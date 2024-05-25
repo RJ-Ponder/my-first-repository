@@ -1,0 +1,57 @@
+LOCAL GIT COMMANDS
+
+git init // turn any directory into a git repository. (adds a .git folder to the current directory)
+  # create a README.md file as a standard procedure to show what this repository is about. Will display on GitHub as well.
+  # make sure to always add .gitignore (create using touch) to every new repository
+  # any file you reference in .gitignore will be not be added to the repository
+  # additionally, you can make any repo private by logging into GitHub and changing the settings
+
+git status // run this command any time and often to check on the status of the files in the git repository
+
+git add <file> // this command stages changed files, readying them to be wrapped into the next commit
+
+git commit -m 'Message you want to include' // this command commits staged files, wrapping them into a commit. A historical record of commits is a codebase's version or commit history
+  # the -m flag will let you write a message for that group of commits (changes usually are related to one another)
+
+git log // view the repository's commit history
+
+only commits are moved around (moved using push or pull)
+
+REMOTE GIT COMMANDS
+
+Usual steps:
+  1. Create local repo using above commands
+  2. Login to GitHub.com and create a New Repository (+ symbol upper right)
+  3. Create a repository name unique to your account, separating words with either hyphens or underscores (usually will match the local repo directory name)
+      If the local repo is created first, don't check "create with README file" otherwise you will have to pull this from the remote.
+  4. Now you want to connect your local repo with the newly created remote repo so you can begin pushing commits
+  5. Run the command git remote
+      git remote add origin https://github.com/RJ-Ponder/<repository-name>.git
+      git remote by itself shows all the remote repositories your local one knows about
+        add, remove, and modify remote repos that your local repo is linked to with sub-commands such as "add"
+      origin is the alias, every remote repo linked to your local must have a unique alias
+      you can use the course name as the alias
+  6. Push commits to the remote repo using git push 
+      FIRST TIME: use git push -u origin master (or main) which -u flag sets the default upstream repo as the master branch for pushes and pulls
+      Rename master to main on github.com
+        Go to repository
+        Settings (right side of menu)
+        Branches (left menu)
+        Pencil icon
+      Rename master to main locally with git branch -m master main
+      Update the tracking locally:
+        git branch -m master main
+        git fetch origin
+        git branch -u origin/main main
+        git remote set-head origin -a
+      Rename origin to alias with git remote rename origin alias if you didn't already
+      See the remote repositories with git remote; add the -v flag to see the urls
+  7. To pull from the remote repository (not as common, refer to the book)
+      git fetch // to see changes
+      git diff // to compare differences
+      git pull --ff-only // tells how to pull and merge the changes
+  8. git clone // to start working on an existing repository
+
+PASSWORDS
+  GitHub is discontinuing standard username and password authentication
+  Look into how to use a more secure authentication method such as SSH. Unsure at the moment?!
